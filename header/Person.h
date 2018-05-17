@@ -9,9 +9,11 @@ class Person {
 private:
     string name_;
 public:
+    Person();
     Person(const string& name);
     bool canDrive() const;
     string getName() const;
+    bool operator==(const Person& p) const;
 };
 
 

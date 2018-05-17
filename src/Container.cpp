@@ -6,6 +6,10 @@ void Container::addPerson(const Person &p) {
     people_.push_back(p);
 }
 
+void Container::removePerson(const Person &p) {
+    people_.remove(p);
+}
+
 string Container::getName() const {
     return name_;
 }
