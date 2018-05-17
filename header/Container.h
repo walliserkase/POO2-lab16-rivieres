@@ -14,6 +14,7 @@ private:
 public:
     Container(const string& name); // TODO: doit être utilisé seulement par les sous-classes
     string getName() const;
+    void addPerson(const Person& p);
     friend ostream& operator<<(ostream& os, const Container& container);
 };
 

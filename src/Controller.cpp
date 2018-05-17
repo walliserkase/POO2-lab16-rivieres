@@ -4,7 +4,16 @@
 const string UI_BANK_LIMIT = "----------------------------------------------------------";
 const string UI_RIVER = "==========================================================";
 
-Controller::Controller() : banks_({Bank("Gauche"), Bank("Droite")}), boat_("Bateau", banks_[0]) {}
+Controller::Controller() : banks_({Bank("Gauche"), Bank("Droite")}), boat_("Bateau", banks_[0]) {
+    banks_[0].addPerson(Person("Pere"));
+    banks_[0].addPerson(Person("Mere"));
+    banks_[0].addPerson(Person("Paul"));
+    banks_[0].addPerson(Person("Pierre"));
+    banks_[0].addPerson(Person("Julie"));
+    banks_[0].addPerson(Person("Jeanne"));
+    banks_[0].addPerson(Person("Policier"));
+    banks_[0].addPerson(Person("Voleur"));
+}
 
 void Controller::display() const {
     cout << UI_BANK_LIMIT << endl;
