@@ -4,6 +4,8 @@
 const string UI_BANK_LIMIT = "----------------------------------------------------------";
 const string UI_RIVER = "==========================================================";
 
+Controller::Controller() : banks_({Bank("Gauche"), Bank("Droite")}), boat_("Bateau", banks_[0]) {}
+
 void Controller::display() const {
     cout << UI_BANK_LIMIT << endl;
     cout << banks_[0] << endl;

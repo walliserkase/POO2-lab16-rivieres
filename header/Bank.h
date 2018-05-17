@@ -6,7 +6,7 @@
 class Bank : public Container {
 private:
     static unsigned int nbBanks_;
-    const unsigned int bankId_;
+    unsigned int bankId_;
 public:
     Bank(const string& name);
     unsigned int getBankId() const;

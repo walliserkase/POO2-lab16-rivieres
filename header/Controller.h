@@ -7,9 +7,8 @@
 
 class Controller {
 private:
-    // TODO: utile de préciser la taille ici?
-    Bank& banks_[2];
-    Boat& boat_;
+    Bank banks_[2];
+    Boat boat_;
 public:
     Controller();
     // TODO: surcharger << un peu moche dans ce cas

@@ -1,11 +1,11 @@
 #include <iostream>
+#include "header/Controller.h"
 
 int main() {
 
+    Controller c;
+    c.display();
 
 
-
-
-    std::cout << "Ce labo est fini..." << std::endl;
     return 0;
 }

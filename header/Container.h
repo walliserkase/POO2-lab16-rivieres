@@ -9,12 +9,12 @@ using namespace std;
 
 class Container {
 private:
-    const string name_;
+    string name_;
     list<Person> people_;
 public:
     Container(const string& name); // TODO: doit être utilisé seulement par les sous-classes
     string getName() const;
-    friend ostream& operator<<(ostream& os, const Container container);
+    friend ostream& operator<<(ostream& os, const Container& container);
 };
 
 
