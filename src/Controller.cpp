@@ -5,7 +5,7 @@
 const string UI_BANK_LIMIT = "----------------------------------------------------------";
 const string UI_RIVER = "==========================================================";
 
-Controller::Controller() : banks_({Bank("Gauche"), Bank("Droite")}), boat_("Bateau", banks_[0]) {
+Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), boat_("Bateau", banks_[0]) {
     Person pere("Pere");
     Person mere("Mere");
     Person paul("Paul");
