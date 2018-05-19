@@ -14,6 +14,9 @@ public:
     bool canDrive() const;
     string getName() const;
     bool operator==(const Person& p) const;
+    // To use map class
+    bool operator<(const Person& p) const;
+    friend ostream& operator<<(ostream& os, const Person& p);
 };
 
 

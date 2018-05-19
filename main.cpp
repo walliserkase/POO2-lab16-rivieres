@@ -5,6 +5,8 @@
 int main() {
     Controller c;
     Menu menu(c);
-    menu.display();
+    while(true) {
+        menu.display();
+    }
     return 0;
 }

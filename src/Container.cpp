@@ -1,6 +1,13 @@
+#include <algorithm>
 #include "../header/Container.h"
 
+using namespace std;
+
 Container::Container(const string &name) : name_(name) {}
+
+string Container::getName() const {
+    return name_;
+}
 
 void Container::addPerson(const Person &p) {
     people_.push_back(p);
@@ -10,8 +17,12 @@ void Container::removePerson(const Person &p) {
     people_.remove(p);
 }
 
-string Container::getName() const {
-    return name_;
+bool Container::contains(const Person &p) const {
+    return find(people_.begin(), people_.end(), p) != people_.end();
+}
+
+unsigned int Container::getPeopleCount() const {
+    return people_.size();
 }
 
 ostream& operator<<(ostream& os, const Container& container) {

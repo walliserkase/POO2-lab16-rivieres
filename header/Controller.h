@@ -15,9 +15,13 @@ private:
 public:
     Controller();
     // TODO: surcharger << un peu moche dans ce cas
+    void init();
     void display() const;
     const Person& getPerson(const string& p) const;
-    void readInput() const;
+    void readInput();
+    void move(const Person& p, Container& from, Container& to);
+    void embark(const Person& p);
+    void disembark(const Person& p);
 };
 
 

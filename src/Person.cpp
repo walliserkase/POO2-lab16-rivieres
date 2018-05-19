@@ -17,6 +17,10 @@ bool Person::operator==(const Person &p) const {
     return name_ == p.name_;
 }
 
+bool Person::operator<(const Person &p) const {
+    return name_ < p.name_;
+}
+
 ostream& operator<<(ostream& os, const Person& p) {
     return os << p.getName();
 }

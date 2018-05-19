@@ -16,6 +16,8 @@ public:
     string getName() const;
     void addPerson(const Person& p);
     void removePerson(const Person& p);
+    bool contains(const Person& p) const;
+    unsigned int getPeopleCount() const;
     friend ostream& operator<<(ostream& os, const Container& container);
 };
 
