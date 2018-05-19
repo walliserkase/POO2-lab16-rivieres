@@ -28,11 +28,11 @@ void Controller::display() const {
     cout << UI_BANK_LIMIT << endl;
     cout << banks_[0] << endl;
     cout << UI_BANK_LIMIT << endl;
-    if(boat_.getCurrentBank().getBankId() == 0) {
+    if (boat_.getCurrentBank().getBankId() == 0) {
         cout << boat_ << endl;
     }
     cout << UI_RIVER << endl;
-    if(boat_.getCurrentBank().getBankId() == 1) {
+    if (boat_.getCurrentBank().getBankId() == 1) {
         cout << boat_ << endl;
     }
     cout << UI_BANK_LIMIT << endl;
@@ -40,6 +40,35 @@ void Controller::display() const {
     cout << UI_BANK_LIMIT << endl;
 }
 
-const Person& Controller::getPerson(const string& name) const {
+const Person &Controller::getPerson(const string &name) const {
     return people_.at(name);
+}
+
+void Controller::readInput() const {
+    char input;
+    bool isCommandValid = true;
+    do {
+        scanf("%c", &input);
+        switch (input) {
+            case 'p':
+                break;
+            case 'e':
+                break;
+            case 'd':
+                break;
+            case 'm':
+                break;
+            case 'r':
+                break;
+            case 'q':
+                exit(EXIT_SUCCESS);
+                break;
+            case 'h':
+                break;
+            default:
+                cout << "Veuillez entrer une commande valide." << endl;
+                isCommandValid = false;
+                break;
+        }
+    } while (!isCommandValid);
 }

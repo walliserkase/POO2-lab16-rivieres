@@ -17,6 +17,7 @@ public:
     // TODO: surcharger << un peu moche dans ce cas
     void display() const;
     const Person& getPerson(const string& p) const;
+    void readInput() const;
 };
 
 
