@@ -103,19 +103,7 @@ void Controller::readInput() {
 /* Responsible for enforcing side-to-side presence rules*/
 void Controller::move(const Person &p, Container &from, Container &to) {
     bool isLegalMove = true;
-
-    Person &companion = p.getCompanionAgainstOthers().first;
-    list<Person> &peopleToAvoid = p.getCompanionAgainstOthers().second;
-
-    if(!to.contains(companion)) {
-        for(list<Person>::iterator it = peopleToAvoid.begin(); it != peopleToAvoid.end(); it++) {
-            if(to.contains(*it)) {
-                isLegalMove = false;
-                break;
-            }
-        }
-    }
-
+    
     if(isLegalMove) {
         from.removePerson(p);
         to.addPerson(p);

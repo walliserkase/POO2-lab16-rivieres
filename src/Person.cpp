@@ -26,15 +26,6 @@ bool Person::operator==(const Person &p) const {
     return name_ == p.name_;
 }
 
-pair<Person, std::list<Person> >& Person::getCompanionAgainstOthers() const {
-    return companionAgainstOthers_;
-}
-
-void Person::setCompanionAgainstOthers(const pair<Person, std::list<Person> >& companionAgainstOthers) {
-    companionAgainstOthers_.first = companionAgainstOthers.first;
-    companionAgainstOthers_.second = companionAgainstOthers.second;
-}
-
 bool Person::operator<(const Person &p) const {
     return name_ < p.name_;
 }

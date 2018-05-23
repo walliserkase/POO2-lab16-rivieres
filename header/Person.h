@@ -16,7 +16,6 @@
 #ifndef LAB_16_RIVIERE_PERSON_H
 #define LAB_16_RIVIERE_PERSON_H
 
-#include <list>
 #include <string>
 
 using namespace std;
@@ -24,7 +23,6 @@ using namespace std;
 class Person {
 private:
     string name_;   // the name of the Person
-    pair<Person, std::list<Person>> companionAgainstOthers_; //TODO change
 public:
 
     /**
@@ -50,12 +48,6 @@ public:
      * @return the name of the Person
      */
     string getName() const;
-
-    //TODO change
-    pair<Person, std::list<Person> >& getCompanionAgainstOthers() const;
-
-    //TODO change
-    void setCompanionAgainstOthers(const pair<Person, std::list<Person> >& companionAgainstOthers);
 
     /**
      * operator == definiton
