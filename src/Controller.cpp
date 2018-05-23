@@ -98,6 +98,8 @@ void Controller::embark(const Person &p) {
         cout << p << " deja a bord." << endl;
     } else if (boat_.getPeopleCount() >= 2) {
         cout << "Bateau deja plein." << endl;
+    } else if(!boat_.getCurrentBank().contains(p)) {
+        cout << "Le bateau est sur l'autre rive." << endl;
     } else {
         Bank &bank = banks_[0].contains(p) ? banks_[0] : banks_[1];
         move(p, bank, boat_);
