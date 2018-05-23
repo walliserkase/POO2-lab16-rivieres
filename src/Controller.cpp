@@ -95,11 +95,11 @@ void Controller::move(const Person &p, Container &from, Container &to) {
 
 void Controller::embark(const Person &p) {
     if (boat_.contains(p)) {
-        cout << p << " deja a bord." << endl;
+        cout << "#" << p << " deja a bord." << endl;
     } else if (boat_.getPeopleCount() >= 2) {
-        cout << "Bateau deja plein." << endl;
+        cout << "# Bateau deja plein." << endl;
     } else if(!boat_.getCurrentBank().contains(p)) {
-        cout << "Le bateau est sur l'autre rive." << endl;
+        cout << "# Le bateau est sur l'autre rive." << endl;
     } else {
         Bank &bank = banks_[0].contains(p) ? banks_[0] : banks_[1];
         move(p, bank, boat_);
@@ -108,7 +108,7 @@ void Controller::embark(const Person &p) {
 
 void Controller::disembark(const Person &p) {
     if (!boat_.contains(p)) {
-        cout << p << " n'est pas a bord." << endl;
+        cout << "#" << p << " n'est pas a bord." << endl;
     } else {
         move(p, boat_, boat_.getCurrentBank());
     }
