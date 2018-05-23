@@ -1,6 +1,6 @@
 #include <iostream>
 #include "header/Controller.h"
-#include "src/Menu.h"
+#include "header/Menu.h"
 
 int main() {
     Controller c;

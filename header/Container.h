@@ -12,12 +12,15 @@ private:
     string name_;
     list<Person> people_;
 public:
+    // TODO: debug only
+    //Container();
     Container(const string& name); // TODO: doit être utilisé seulement par les sous-classes
     string getName() const;
     void addPerson(const Person& p);
     void removePerson(const Person& p);
     bool contains(const Person& p) const;
     unsigned int getPeopleCount() const;
+    bool operator==(const Container& o) const;
     friend ostream& operator<<(ostream& os, const Container& container);
 };
 

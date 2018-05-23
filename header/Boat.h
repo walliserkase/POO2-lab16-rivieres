@@ -6,11 +6,12 @@
 
 class Boat : public Container {
 private:
-    Bank& currentBank_;
+    Bank* currentBank_;
+
 public:
-    Boat(const string& name, Bank& startBank);
+    Boat(const string& name, Bank* startBank);
     Bank& getCurrentBank() const;
-    void setCurrentBank(const Bank& b);
+    void setCurrentBank(Bank* b);
 };
 
 

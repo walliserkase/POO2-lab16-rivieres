@@ -22,6 +22,7 @@ public:
     void move(const Person& p, Container& from, Container& to);
     void embark(const Person& p);
     void disembark(const Person& p);
+    void moveBoat();
 };
 
 

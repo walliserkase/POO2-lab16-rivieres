@@ -5,7 +5,8 @@
 const string UI_BANK_LIMIT = "----------------------------------------------------------";
 const string UI_RIVER = "==========================================================";
 
-Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), boat_("Bateau", banks_[0]) {
+Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), boat_(Boat("Bateau", banks_)) {
+
     Person pere("Pere");
     Person mere("Mere");
     Person paul("Paul");
@@ -25,8 +26,7 @@ Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), b
     people_["Voleur"] = voleur;
 
     for (map<string, Person>::iterator it = people_.begin(); it != people_.end(); it++) {
-        Person &p = it->second;
-        banks_[0].addPerson(p);
+        banks_[0].addPerson(it->second);
     }
 }
 
@@ -74,7 +74,7 @@ void Controller::readInput() {
         }
 
     } else if (input == "m") {
-
+        moveBoat();
     } else if (input == "r") {
 
     } else if (input == "q") {
@@ -110,4 +110,9 @@ void Controller::disembark(const Person &p) {
     } else {
         move(p, boat_, boat_.getCurrentBank());
     }
+}
+
+void Controller::moveBoat() {
+    Bank& newBank = boat_.getCurrentBank() == banks_[0] ? banks_[1] : banks_[0];
+    boat_.setCurrentBank(&newBank);
 }

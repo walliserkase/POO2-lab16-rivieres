@@ -3,6 +3,8 @@
 
 using namespace std;
 
+//Container::Container() : name_("default") {}
+
 Container::Container(const string &name) : name_(name) {}
 
 string Container::getName() const {
@@ -23,6 +25,10 @@ bool Container::contains(const Person &p) const {
 
 unsigned int Container::getPeopleCount() const {
     return people_.size();
+}
+
+bool Container::operator==(const Container &o) const {
+    return name_ == o.name_;
 }
 
 ostream& operator<<(ostream& os, const Container& container) {

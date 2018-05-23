@@ -1,7 +1,7 @@
 #ifndef LAB_16_RIVIERE_MENU_H
 #define LAB_16_RIVIERE_MENU_H
 
-#include "../header/Controller.h"
+#include "Controller.h"
 
 class Menu {
 private:
