@@ -17,26 +17,47 @@ const string UI_RIVER = "=======================================================
 
 Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), boat_(Boat("Bateau", banks_)) {
 
-    Person pere("Pere");
-    Person mere("Mere");
-    Person paul("Paul");
-    Person pierre("Pierre");
-    Person julie("Julie");
-    Person jeanne("Jeanne");
-    Person policier("Policier");
-    Person voleur("Voleur");
+    Person *pere = new Person("Pere");
+    Person *mere = new Person("Mere");
+    Person *paul = new Person("Paul");
+    Person *pierre = new Person("Pierre");
+    Person *julie = new Person("Julie");
+    Person *jeanne = new Person("Jeanne");
+    Person *policier = new Person("Policier");
+    Person *voleur = new Person("Voleur");
 
-    people_["Pere"] = pere;
-    people_["Mere"] = mere;
-    people_["Paul"] = paul;
-    people_["Pierre"] = pierre;
-    people_["Julie"] = julie;
-    people_["Jeanne"] = jeanne;
-    people_["Policier"] = policier;
-    people_["Voleur"] = voleur;
+    people_["Pere"] = *pere;
+    people_["Mere"] = *mere;
+    people_["Paul"] = *paul;
+    people_["Pierre"] = *pierre;
+    people_["Julie"] = *julie;
+    people_["Jeanne"] = *jeanne;
+    people_["Policier"] = *policier;
+    people_["Voleur"] = *voleur;
 
     for (map<string, Person>::iterator it = people_.begin(); it != people_.end(); it++) {
         banks_[0].addPerson(it->second);
+    }
+
+    constraints_.push_back(new Constraint(*paul, *mere, *pere));
+    constraints_.push_back(new Constraint(*pierre, *mere, *pere));
+    constraints_.push_back(new Constraint(*julie, *pere, *mere));
+    constraints_.push_back(new Constraint(*jeanne, *pere, *mere));
+    constraints_.push_back(new Constraint(*pere, *policier, *voleur));
+    constraints_.push_back(new Constraint(*mere, *policier, *voleur));
+    constraints_.push_back(new Constraint(*paul, *policier, *voleur));
+    constraints_.push_back(new Constraint(*pierre, *policier, *voleur));
+    constraints_.push_back(new Constraint(*julie, *policier, *voleur));
+    constraints_.push_back(new Constraint(*jeanne, *policier, *voleur));
+}
+
+Controller::~Controller() {
+    for (map<string, Person>::iterator it = people_.begin(); it != people_.end(); it++) {
+        delete &(it->second);
+    }
+
+    for(list<Constraint*>::iterator it = constraints_.begin(); it != constraints_.end(); it++) {
+        delete *it;
     }
 }
 
@@ -103,12 +124,27 @@ void Controller::readInput() {
 /* Responsible for enforcing side-to-side presence rules*/
 void Controller::move(const Person &p, Container &from, Container &to) {
     bool isLegalMove = true;
-    
+
+    for(list<Constraint*>::iterator it = constraints_.begin(); it != constraints_.end(); it++) {
+        // TODO: comparison ok??
+        Constraint &c = **it;
+        if(&p == &(c.getSubject()) && to.contains(c.getAgressor()) && !to.contains(c.getProtector())) {
+            isLegalMove = false;
+            break;
+        } else if (&p == &(c.getProtector()) && from.contains(c.getSubject()) && from.contains(c.getAgressor())) {
+            isLegalMove = false;
+            break;
+        } else if (&p == &(c.getAgressor()) && to.contains(c.getSubject()) && !to.contains(c.getProtector())) {
+            isLegalMove = false;
+            break;
+        }
+    }
+
     if(isLegalMove) {
         from.removePerson(p);
         to.addPerson(p);
     } else {
-
+        cout << "# Deplacement illegal" << endl;
     }
 }
 

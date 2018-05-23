@@ -11,6 +11,9 @@ private:
     const Person& agressor_;
 public:
     Constraint(const Person& subject, const Person& protector, const Person& agressor);
+    const Person& getSubject() const;
+    const Person& getProtector() const;
+    const Person& getAgressor() const;
 };
 
 

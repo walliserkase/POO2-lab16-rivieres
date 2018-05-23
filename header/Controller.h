@@ -17,12 +17,14 @@
 #include "Bank.h"
 #include "Boat.h"
 #include "Person.h"
+#include "Constraint.h"
 
 class Controller {
 private:
     Bank banks_[2]; // the 2 banks
     Boat boat_;     // the boat
     map<string, Person> people_; // all the people
+    list<Constraint*> constraints_; // constraints on the movements of people
 
 public:
     /**
@@ -30,6 +32,11 @@ public:
      */
     Controller();
     // TODO: surcharger << un peu moche dans ce cas
+
+    /**
+     * Destructor
+     */
+    ~Controller();
 
     /**
      * ?
