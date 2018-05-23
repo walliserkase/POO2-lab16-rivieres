@@ -124,17 +124,21 @@ void Controller::readInput() {
 /* Responsible for enforcing side-to-side presence rules*/
 void Controller::move(const Person &p, Container &from, Container &to) {
     bool isLegalMove = true;
+    Constraint *failedConstraint;
 
     for(list<Constraint*>::iterator it = constraints_.begin(); it != constraints_.end(); it++) {
         Constraint &c = **it;
         if(&p == c.getSubject() && to.contains(*c.getAgressor()) && !to.contains(*c.getProtector())) {
             isLegalMove = false;
+            failedConstraint = &c;
             break;
         } else if (&p == c.getProtector() && from.contains(*c.getSubject()) && from.contains(*c.getAgressor())) {
             isLegalMove = false;
+            failedConstraint = &c;
             break;
         } else if (&p == c.getAgressor() && to.contains(*c.getSubject()) && !to.contains(*c.getProtector())) {
             isLegalMove = false;
+            failedConstraint = &c;
             break;
         }
     }
@@ -143,7 +147,8 @@ void Controller::move(const Person &p, Container &from, Container &to) {
         from.removePerson(p);
         to.addPerson(p);
     } else {
-        cout << "# Deplacement illegal" << endl;
+        cout << "# " << *failedConstraint->getSubject() << " avec " << *failedConstraint->getAgressor() <<
+             " sans " << *failedConstraint->getProtector() << endl;
     }
 }
 
