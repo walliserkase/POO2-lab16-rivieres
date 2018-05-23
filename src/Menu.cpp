@@ -1,3 +1,12 @@
+/*
+ * Laboratoire 16, Rivière
+ *
+ * Joël Kaufmann
+ * Alexandre Vouilloz
+ *
+ * Date : 24.05.2018
+ */
+
 #include <iostream>
 #include "../header/Menu.h"
 

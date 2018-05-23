@@ -1,3 +1,12 @@
+/*
+ * Laboratoire 16, Rivière
+ *
+ * Joël Kaufmann
+ * Alexandre Vouilloz
+ *
+ * Date : 24.05.2018
+ */
+
 #include <algorithm>
 #include <iostream>
 #include <unordered_map>
