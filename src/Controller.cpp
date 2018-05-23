@@ -26,17 +26,17 @@ Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), b
     Person *policier = new Person("Policier");
     Person *voleur = new Person("Voleur");
 
-    people_["Pere"] = *pere;
-    people_["Mere"] = *mere;
-    people_["Paul"] = *paul;
-    people_["Pierre"] = *pierre;
-    people_["Julie"] = *julie;
-    people_["Jeanne"] = *jeanne;
-    people_["Policier"] = *policier;
-    people_["Voleur"] = *voleur;
+    people_["Pere"] = pere;
+    people_["Mere"] = mere;
+    people_["Paul"] = paul;
+    people_["Pierre"] = pierre;
+    people_["Julie"] = julie;
+    people_["Jeanne"] = jeanne;
+    people_["Policier"] = policier;
+    people_["Voleur"] = voleur;
 
-    for (map<string, Person>::iterator it = people_.begin(); it != people_.end(); it++) {
-        banks_[0].addPerson(it->second);
+    for (map<string, Person*>::iterator it = people_.begin(); it != people_.end(); it++) {
+        banks_[0].addPerson(*it->second);
     }
 
     constraints_.push_back(new Constraint(*paul, *mere, *pere));
@@ -52,7 +52,7 @@ Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), b
 }
 
 Controller::~Controller() {
-    for (map<string, Person>::iterator it = people_.begin(); it != people_.end(); it++) {
+    for (map<string, Person*>::iterator it = people_.begin(); it != people_.end(); it++) {
         delete &(it->second);
     }
 
@@ -86,7 +86,7 @@ void Controller::display() const {
 }
 
 const Person &Controller::getPerson(const string &name) const {
-    return people_.at(name);
+    return *people_.at(name);
 }
 
 void Controller::readInput() {
@@ -96,11 +96,11 @@ void Controller::readInput() {
 
     } else if (input[0] == 'e' || input[0] == 'd') {
         string name = input.substr(2, input.size() - 1);
-        map<string, Person>::iterator it = people_.find(name);
+        map<string, Person*>::iterator it = people_.find(name);
         if (it == people_.end() || input[1] != ' ') {
             cout << "Veuillez entrer une commande valide." << endl;
         } else {
-            Person &p = it->second;
+            Person &p = *it->second;
             if (input[0] == 'e') {
                 embark(p);
             } else {
@@ -126,15 +126,14 @@ void Controller::move(const Person &p, Container &from, Container &to) {
     bool isLegalMove = true;
 
     for(list<Constraint*>::iterator it = constraints_.begin(); it != constraints_.end(); it++) {
-        // TODO: comparison ok??
         Constraint &c = **it;
-        if(&p == &(c.getSubject()) && to.contains(c.getAgressor()) && !to.contains(c.getProtector())) {
+        if(&p == c.getSubject() && to.contains(*c.getAgressor()) && !to.contains(*c.getProtector())) {
             isLegalMove = false;
             break;
-        } else if (&p == &(c.getProtector()) && from.contains(c.getSubject()) && from.contains(c.getAgressor())) {
+        } else if (&p == c.getProtector() && from.contains(*c.getSubject()) && from.contains(*c.getAgressor())) {
             isLegalMove = false;
             break;
-        } else if (&p == &(c.getAgressor()) && to.contains(c.getSubject()) && !to.contains(c.getProtector())) {
+        } else if (&p == c.getAgressor() && to.contains(*c.getSubject()) && !to.contains(*c.getProtector())) {
             isLegalMove = false;
             break;
         }

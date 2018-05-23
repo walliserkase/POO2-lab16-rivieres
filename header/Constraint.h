@@ -6,14 +6,14 @@
 
 class Constraint {
 private:
-    const Person& subject_;
-    const Person& protector_;
-    const Person& agressor_;
+    const Person * const subject_;
+    const Person * const protector_;
+    const Person * const agressor_;
 public:
     Constraint(const Person& subject, const Person& protector, const Person& agressor);
-    const Person& getSubject() const;
-    const Person& getProtector() const;
-    const Person& getAgressor() const;
+    const Person * const getSubject() const;
+    const Person * const getProtector() const;
+    const Person * const getAgressor() const;
 };
 
 
