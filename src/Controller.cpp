@@ -96,10 +96,6 @@ void Controller::displayRiver() const {
     cout << UI_BANK_LIMIT << endl;
 }
 
-const Person &Controller::getPerson(const string &name) const {
-    return *people_.at(name);
-}
-
 void Controller::readInput() {
     cout << nbTurns_ << "> ";
     string input;

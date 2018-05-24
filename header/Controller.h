@@ -25,14 +25,13 @@ private:
     Boat boat_;     // the boat
     map<string, Person*> people_; // all the people
     list<Constraint*> constraints_; // constraints on the movements of people
-    unsigned int nbTurns_;
+    unsigned int nbTurns_; // Number of turns elpased since start
 
 public:
     /**
      * Constructor
      */
     Controller();
-    // TODO: surcharger << un peu moche dans ce cas
 
     /**
      * Destructor
@@ -53,13 +52,6 @@ public:
      * Displays the current state of the problem
      */
     void displayRiver() const;
-
-    /**
-     * Getter of a Person by its name
-     * @param p the name of the Person to get
-     * @return the Person
-     */
-    const Person& getPerson(const string& p) const;
 
     /**
      * Read input from console
