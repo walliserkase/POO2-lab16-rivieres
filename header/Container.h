@@ -50,6 +50,11 @@ public:
     void removePerson(const Person& p);
 
     /**
+     * Remove all people from the container
+     */
+    void removeAll();
+
+    /**
      * Check whether a Person is in the container
      * @param p the person to find
      * @return True : if the Person was found in the container,

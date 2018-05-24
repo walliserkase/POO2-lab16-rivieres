@@ -39,9 +39,9 @@ public:
     ~Controller();
 
     /**
-     * ?
+     * Place all people on the first bank
      */
-    void init();
+    void initPeopleStart();
 
     /**
      * Displays the current state of the problem

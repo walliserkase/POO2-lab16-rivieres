@@ -35,10 +35,6 @@ Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), b
     people_["Policier"] = policier;
     people_["Voleur"] = voleur;
 
-    for (map<string, Person*>::iterator it = people_.begin(); it != people_.end(); it++) {
-        banks_[0].addPerson(*it->second);
-    }
-
     constraints_.push_back(new Constraint(*paul, *pere, *mere));
     constraints_.push_back(new Constraint(*pierre, *pere, *mere));
     constraints_.push_back(new Constraint(*julie, *mere, *pere));
@@ -49,6 +45,8 @@ Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), b
     constraints_.push_back(new Constraint(*pierre, *policier, *voleur));
     constraints_.push_back(new Constraint(*julie, *policier, *voleur));
     constraints_.push_back(new Constraint(*jeanne, *policier, *voleur));
+
+    initPeopleStart();
 }
 
 Controller::~Controller() {
@@ -61,8 +59,13 @@ Controller::~Controller() {
     }
 }
 
-void Controller::init() {
-
+void Controller::initPeopleStart() {
+    boat_.removeAll();
+    banks_[0].removeAll();
+    banks_[1].removeAll();
+    for (map<string, Person*>::iterator it = people_.begin(); it != people_.end(); it++) {
+        banks_[0].addPerson(*it->second);
+    }
 }
 
 void Controller::display() const {
@@ -111,7 +114,7 @@ void Controller::readInput() {
     } else if (input == "m") {
         moveBoat();
     } else if (input == "r") {
-
+        initPeopleStart();
     } else if (input == "q") {
         exit(EXIT_SUCCESS);
     } else if (input == "h") {

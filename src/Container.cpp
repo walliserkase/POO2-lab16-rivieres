@@ -26,6 +26,10 @@ void Container::removePerson(const Person &p) {
     people_.remove(p);
 }
 
+void Container::removeAll() {
+    people_.clear();
+}
+
 bool Container::contains(const Person &p) const {
     return find(people_.begin(), people_.end(), p) != people_.end();
 }
