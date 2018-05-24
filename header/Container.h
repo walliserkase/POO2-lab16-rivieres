@@ -23,7 +23,7 @@ class Container {
 private:
     string name_;           // container's name
 protected:
-    list<Person> people_;   // list of people in the container //TODO list de pointeurs
+    list<Person> people_;   // list of people in the container
     /**
      * Constructor
      * @param name container's name
