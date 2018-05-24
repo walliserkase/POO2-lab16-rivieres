@@ -12,8 +12,6 @@
 
 using namespace std;
 
-//Container::Container() : name_("default") {}
-
 Container::Container(const string &name) : name_(name) {}
 
 string Container::getName() const {
