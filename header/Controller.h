@@ -27,36 +27,10 @@ private:
     list<Constraint*> constraints_; // constraints on the movements of people
     unsigned int nbTurns_; // Number of turns elpased since start
 
-public:
     /**
-     * Constructor
-     */
-    Controller();
-
-    /**
-     * Destructor
-     */
-    ~Controller();
-
-    /**
-     * Reinit number of turns and place all people on the first bank
-     */
-    void reinitProblem();
-
-    /**
-    * Display the list of available commands
+    * Reinit number of turns and place all people on the first bank
     */
-    void displayMenu() const;
-
-    /**
-     * Displays the current state of the problem
-     */
-    void displayRiver() const;
-
-    /**
-     * Read input from console
-     */
-    void readInput();
+    void reinitProblem();
 
     /**
      * Move a Person from a container to another, only if
@@ -88,6 +62,32 @@ public:
      * Check whether the user solved the problem and exit program if it is the case.
      */
     void checkProblemSolved();
+
+public:
+    /**
+     * Constructor
+     */
+    Controller();
+
+    /**
+     * Destructor
+     */
+    ~Controller();
+
+    /**
+    * Display the list of available commands
+    */
+    void displayMenu() const;
+
+    /**
+     * Displays the current state of the problem
+     */
+    void displayRiver() const;
+
+    /**
+     * Read input from console
+     */
+    void readInput();
 };
 
 

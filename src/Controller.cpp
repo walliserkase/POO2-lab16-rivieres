@@ -59,16 +59,6 @@ Controller::~Controller() {
     }
 }
 
-void Controller::reinitProblem() {
-    nbTurns_ = 0;
-    boat_.removeAll();
-    banks_[0].removeAll();
-    banks_[1].removeAll();
-    for (map<string, Person*>::iterator it = people_.begin(); it != people_.end(); it++) {
-        banks_[0].addPerson(*it->second);
-    }
-}
-
 void Controller::displayMenu() const {
     cout << "p\t: afficher" << endl;
     cout << "e <nom>\t: embarquer <nom>" << endl;
@@ -132,6 +122,16 @@ void Controller::readInput() {
         displayMenu();
     } else {
         cout << "Veuillez entrer une commande valide." << endl;
+    }
+}
+
+void Controller::reinitProblem() {
+    nbTurns_ = 0;
+    boat_.removeAll();
+    banks_[0].removeAll();
+    banks_[1].removeAll();
+    for (map<string, Person*>::iterator it = people_.begin(); it != people_.end(); it++) {
+        banks_[0].addPerson(*it->second);
     }
 }
 
