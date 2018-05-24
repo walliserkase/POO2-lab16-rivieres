@@ -128,15 +128,15 @@ void Controller::move(const Person &p, Container &from, Container &to) {
 
     for(list<Constraint*>::iterator it = constraints_.begin(); it != constraints_.end(); it++) {
         Constraint &c = **it;
-        if(&p == c.getSubject() && to.contains(*c.getAgressor()) && !to.contains(*c.getProtector())) {
+        if(&p == c.getSubject() && to.contains(*c.getAggressor()) && !to.contains(*c.getProtector())) {
             isLegalMove = false;
             failedConstraint = &c;
             break;
-        } else if (&p == c.getProtector() && from.contains(*c.getSubject()) && from.contains(*c.getAgressor())) {
+        } else if (&p == c.getProtector() && from.contains(*c.getSubject()) && from.contains(*c.getAggressor())) {
             isLegalMove = false;
             failedConstraint = &c;
             break;
-        } else if (&p == c.getAgressor() && to.contains(*c.getSubject()) && !to.contains(*c.getProtector())) {
+        } else if (&p == c.getAggressor() && to.contains(*c.getSubject()) && !to.contains(*c.getProtector())) {
             isLegalMove = false;
             failedConstraint = &c;
             break;
@@ -147,7 +147,7 @@ void Controller::move(const Person &p, Container &from, Container &to) {
         from.removePerson(p);
         to.addPerson(p);
     } else {
-        cout << "# " << *failedConstraint->getSubject() << " avec " << *failedConstraint->getAgressor() <<
+        cout << "# " << *failedConstraint->getSubject() << " avec " << *failedConstraint->getAggressor() <<
              " sans " << *failedConstraint->getProtector() << endl;
     }
 }

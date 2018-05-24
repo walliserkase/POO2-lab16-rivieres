@@ -28,7 +28,6 @@ public:
     /**
      * Constructor of a Person
      */
-     //TODO ???
     Person();
 
     /**
