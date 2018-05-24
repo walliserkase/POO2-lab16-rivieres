@@ -44,9 +44,14 @@ public:
     void initPeopleStart();
 
     /**
+    * Display the list of available commands
+    */
+    void displayMenu() const;
+
+    /**
      * Displays the current state of the problem
      */
-    void display() const;
+    void displayRiver() const;
 
     /**
      * Getter of a Person by its name

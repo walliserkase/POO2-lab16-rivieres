@@ -53,7 +53,6 @@ Controller::~Controller() {
     for (map<string, Person*>::iterator it = people_.begin(); it != people_.end(); it++) {
         delete &(it->second);
     }
-
     for(list<Constraint*>::iterator it = constraints_.begin(); it != constraints_.end(); it++) {
         delete *it;
     }
@@ -68,7 +67,16 @@ void Controller::initPeopleStart() {
     }
 }
 
-void Controller::display() const {
+void Controller::displayMenu() const {
+    cout << "p\t: afficher" << endl;
+    cout << "e <nom>\t: embarquer <nom>" << endl;
+    cout << "d <nom>\t: debarquer <nom>" << endl;
+    cout << "m\t: deplacer bateau" << endl;
+    cout << "r\t: reinitialiser" << endl;
+    cout << "q\t: quitter" << endl << endl;
+}
+
+void Controller::displayRiver() const {
     cout << UI_BANK_LIMIT << endl;
     cout << banks_[0] << endl;
     cout << UI_BANK_LIMIT << endl;
@@ -116,7 +124,7 @@ void Controller::readInput() {
     } else if (input == "q") {
         exit(EXIT_SUCCESS);
     } else if (input == "h") {
-
+        displayMenu();
     } else {
         cout << "Veuillez entrer une commande valide." << endl;
     }

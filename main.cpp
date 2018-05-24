@@ -1,12 +1,12 @@
 #include <iostream>
 #include "header/Controller.h"
-#include "header/Menu.h"
 
 int main() {
     Controller c;
-    Menu menu(c);
+    c.displayMenu();
     while(true) {
-        menu.display();
+        c.displayRiver();
+        c.readInput();
     }
     return 0;
 }
