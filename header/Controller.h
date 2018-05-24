@@ -25,7 +25,7 @@ private:
     Boat boat_;     // the boat
     map<string, Person*> people_; // all the people
     list<Constraint*> constraints_; // constraints on the movements of people
-    unsigned int nbTurns;
+    unsigned int nbTurns_;
 
 public:
     /**

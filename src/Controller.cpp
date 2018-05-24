@@ -16,7 +16,7 @@ const string UI_BANK_LIMIT = "--------------------------------------------------
 const string UI_RIVER = "==========================================================";
 
 Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), boat_(Boat("Bateau", banks_)),
-    nbTurns(0) {
+    nbTurns_(0) {
 
     Person *pere = new Person("Pere", true);
     Person *mere = new Person("Mere", true);
@@ -60,7 +60,7 @@ Controller::~Controller() {
 }
 
 void Controller::reinitProblem() {
-    nbTurns = 0;
+    nbTurns_ = 0;
     boat_.removeAll();
     banks_[0].removeAll();
     banks_[1].removeAll();
@@ -101,7 +101,7 @@ const Person &Controller::getPerson(const string &name) const {
 }
 
 void Controller::readInput() {
-    cout << nbTurns << "> ";
+    cout << nbTurns_ << "> ";
     string input;
     getline(cin, input);
 
@@ -115,20 +115,21 @@ void Controller::readInput() {
         } else {
             Person &p = *it->second;
             if (input[0] == 'e') {
-                nbTurns++;
+                nbTurns_++;
                 embark(p);
             } else {
-                nbTurns++;
+                nbTurns_++;
                 disembark(p);
             }
         }
 
     } else if (input == "m") {
-        nbTurns++;
+        nbTurns_++;
         moveBoat();
     } else if (input == "r") {
         reinitProblem();
-        // TODO: ajouter diplay
+        displayMenu();
+        displayRiver();
     } else if (input == "q") {
         exit(EXIT_SUCCESS);
     } else if (input == "h") {
@@ -211,7 +212,7 @@ void Controller::checkProblemSolved() {
         problemSolved &= banks_[1].contains(*it->second);
     }
     if(problemSolved) {
-        cout << "Bravo! Tous les passagers sont arrivés sur l'autre rive en " << nbTours_ << " tours." << endl;
+        cout << "Bravo! Tous les passagers sont arrivés sur l'autre rive en " << nbTurns_ << " tours." << endl;
         exit(EXIT_SUCCESS);
     }
 }
