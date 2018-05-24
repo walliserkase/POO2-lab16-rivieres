@@ -74,14 +74,12 @@ void Controller::display() const {
     cout << UI_BANK_LIMIT << endl;
     if (boat_.getCurrentBank().getBankId() == 0) {
         cout << boat_ << endl;
+        cout << UI_RIVER << endl;
+        cout << endl;
     } else {
         cout << endl;
-    }
-    cout << UI_RIVER << endl;
-    if (boat_.getCurrentBank().getBankId() == 1) {
+        cout << UI_RIVER << endl;
         cout << boat_ << endl;
-    } else {
-        cout << endl;
     }
     cout << UI_BANK_LIMIT << endl;
     cout << banks_[1] << endl;
