@@ -212,6 +212,7 @@ void Controller::checkProblemSolved() {
         problemSolved &= banks_[1].contains(*it->second);
     }
     if(problemSolved) {
+        displayRiver();
         cout << "Bravo! Tous les passagers sont arrives sur l'autre rive en " << nbTurns_ << " tours." << endl;
         exit(EXIT_SUCCESS);
     }
