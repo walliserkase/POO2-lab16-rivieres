@@ -102,7 +102,7 @@ void Controller::readInput() {
     string input;
     getline(cin, input);
     if (input == "p") {
-
+        displayRiver();
     } else if (input[0] == 'e' || input[0] == 'd') {
         string name = input.substr(2, input.size() - 1);
         map<string, Person*>::iterator it = people_.find(name);

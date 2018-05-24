@@ -4,8 +4,8 @@
 int main() {
     Controller c;
     c.displayMenu();
+    c.displayRiver();
     while(true) {
-        c.displayRiver();
         c.readInput();
     }
     return 0;
