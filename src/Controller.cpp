@@ -39,10 +39,10 @@ Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), b
         banks_[0].addPerson(*it->second);
     }
 
-    constraints_.push_back(new Constraint(*paul, *mere, *pere));
-    constraints_.push_back(new Constraint(*pierre, *mere, *pere));
-    constraints_.push_back(new Constraint(*julie, *pere, *mere));
-    constraints_.push_back(new Constraint(*jeanne, *pere, *mere));
+    constraints_.push_back(new Constraint(*paul, *pere, *mere));
+    constraints_.push_back(new Constraint(*pierre, *pere, *mere));
+    constraints_.push_back(new Constraint(*julie, *mere, *pere));
+    constraints_.push_back(new Constraint(*jeanne, *mere, *pere));
     constraints_.push_back(new Constraint(*pere, *policier, *voleur));
     constraints_.push_back(new Constraint(*mere, *policier, *voleur));
     constraints_.push_back(new Constraint(*paul, *policier, *voleur));
@@ -98,7 +98,7 @@ void Controller::readInput() {
         string name = input.substr(2, input.size() - 1);
         map<string, Person*>::iterator it = people_.find(name);
         if (it == people_.end() || input[1] != ' ') {
-            cout << "Veuillez entrer une commande valide." << endl;
+            cout << "# Veuillez entrer une commande valide." << endl;
         } else {
             Person &p = *it->second;
             if (input[0] == 'e') {
