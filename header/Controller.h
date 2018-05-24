@@ -91,6 +91,11 @@ public:
      * Move the boat from one bank to the other.
      */
     void moveBoat();
+
+    /**
+     * Check whether the user solved the problem and exit program if it is the case.
+     */
+    void checkProblemSolved();
 };
 
 

@@ -163,6 +163,10 @@ void Controller::move(const Person &p, Container &from, Container &to) {
     if(isLegalMove) {
         from.removePerson(p);
         to.addPerson(p);
+        if(to == banks_[1]) {
+            checkProblemSolved();
+        }
+
     } else {
         cout << "# " << *failedConstraint->getSubject() << " avec " << *failedConstraint->getAggressor() <<
              " sans " << *failedConstraint->getProtector() << endl;
@@ -196,7 +200,18 @@ void Controller::moveBoat() {
         Bank& newBank = boat_.getCurrentBank() == banks_[0] ? banks_[1] : banks_[0];
         boat_.setCurrentBank(&newBank);
     } else {
-        cout << "# Le bateau n'a pas de chauffeur!" << endl;
+        cout << "# Le bateau n'a pas de pilote." << endl;
     }
 
+}
+
+void Controller::checkProblemSolved() {
+    bool problemSolved = true;
+    for (map<string, Person*>::iterator it = people_.begin(); it != people_.end(); it++) {
+        problemSolved &= banks_[1].contains(*it->second);
+    }
+    if(problemSolved) {
+        cout << "Bravo! Tous les passagers sont arrivés sur l'autre rive en " << nbTours_ << " tours." << endl;
+        exit(EXIT_SUCCESS);
+    }
 }
