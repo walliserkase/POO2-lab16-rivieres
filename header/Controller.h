@@ -25,6 +25,7 @@ private:
     Boat boat_;     // the boat
     map<string, Person*> people_; // all the people
     list<Constraint*> constraints_; // constraints on the movements of people
+    unsigned int nbTurns;
 
 public:
     /**
@@ -39,9 +40,9 @@ public:
     ~Controller();
 
     /**
-     * Place all people on the first bank
+     * Reinit number of turns and place all people on the first bank
      */
-    void initPeopleStart();
+    void reinitProblem();
 
     /**
     * Display the list of available commands

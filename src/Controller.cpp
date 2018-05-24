@@ -15,7 +15,8 @@
 const string UI_BANK_LIMIT = "----------------------------------------------------------";
 const string UI_RIVER = "==========================================================";
 
-Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), boat_(Boat("Bateau", banks_)) {
+Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), boat_(Boat("Bateau", banks_)),
+    nbTurns(0) {
 
     Person *pere = new Person("Pere", true);
     Person *mere = new Person("Mere", true);
@@ -46,7 +47,7 @@ Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), b
     constraints_.push_back(new Constraint(*julie, *policier, *voleur));
     constraints_.push_back(new Constraint(*jeanne, *policier, *voleur));
 
-    initPeopleStart();
+    reinitProblem();
 }
 
 Controller::~Controller() {
@@ -58,7 +59,8 @@ Controller::~Controller() {
     }
 }
 
-void Controller::initPeopleStart() {
+void Controller::reinitProblem() {
+    nbTurns = 0;
     boat_.removeAll();
     banks_[0].removeAll();
     banks_[1].removeAll();
@@ -99,8 +101,10 @@ const Person &Controller::getPerson(const string &name) const {
 }
 
 void Controller::readInput() {
+    cout << nbTurns << "> ";
     string input;
     getline(cin, input);
+
     if (input == "p") {
         displayRiver();
     } else if (input[0] == 'e' || input[0] == 'd') {
@@ -111,16 +115,20 @@ void Controller::readInput() {
         } else {
             Person &p = *it->second;
             if (input[0] == 'e') {
+                nbTurns++;
                 embark(p);
             } else {
+                nbTurns++;
                 disembark(p);
             }
         }
 
     } else if (input == "m") {
+        nbTurns++;
         moveBoat();
     } else if (input == "r") {
-        initPeopleStart();
+        reinitProblem();
+        // TODO: ajouter diplay
     } else if (input == "q") {
         exit(EXIT_SUCCESS);
     } else if (input == "h") {
