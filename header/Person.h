@@ -23,6 +23,7 @@ using namespace std;
 class Person {
 private:
     string name_;   // the name of the Person
+    bool canDrive_;  // can or not drive a boat
 public:
 
     /**
@@ -34,7 +35,7 @@ public:
      * Constructor of a Person given its name
      * @param name the name of the Person
      */
-    Person(const string& name);
+    Person(const string& name, bool canDrive = false);
 
     /**
      * Informs whether the Person can drive or not.
@@ -55,7 +56,7 @@ public:
      */
     bool operator==(const Person& p) const;
 
-    // To use map class //TODO ??)
+    // To use map class //
     bool operator<(const Person& p) const;
 
     /**

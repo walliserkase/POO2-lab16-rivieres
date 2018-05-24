@@ -12,10 +12,10 @@
 
 Person::Person() : name_("default") {}
 
-Person::Person(const string &name) : name_(name) {}
+Person::Person(const string &name, bool canDrive) : name_(name), canDrive_(canDrive) {}
 
 bool Person::canDrive() const {
-    //TODO
+    return canDrive_;
 }
 
 string Person::getName() const {

@@ -17,13 +17,13 @@ const string UI_RIVER = "=======================================================
 
 Controller::Controller() : banks_({Bank("Rive gauche"), Bank("Rive droite")}), boat_(Boat("Bateau", banks_)) {
 
-    Person *pere = new Person("Pere");
-    Person *mere = new Person("Mere");
+    Person *pere = new Person("Pere", true);
+    Person *mere = new Person("Mere", true);
     Person *paul = new Person("Paul");
     Person *pierre = new Person("Pierre");
     Person *julie = new Person("Julie");
     Person *jeanne = new Person("Jeanne");
-    Person *policier = new Person("Policier");
+    Person *policier = new Person("Policier", true);
     Person *voleur = new Person("Voleur");
 
     people_["Pere"] = pere;
@@ -174,6 +174,12 @@ void Controller::disembark(const Person &p) {
 }
 
 void Controller::moveBoat() {
-    Bank& newBank = boat_.getCurrentBank() == banks_[0] ? banks_[1] : banks_[0];
-    boat_.setCurrentBank(&newBank);
+    // licence check
+    if (boat_.hasDriver()) {
+        Bank& newBank = boat_.getCurrentBank() == banks_[0] ? banks_[1] : banks_[0];
+        boat_.setCurrentBank(&newBank);
+    } else {
+        cout << "# Le bateau n'a pas de chauffeur!" << endl;
+    }
+
 }

@@ -18,3 +18,12 @@ Bank& Boat::getCurrentBank() const {
 void Boat::setCurrentBank(Bank *b) {
     currentBank_ = b;
 }
+
+bool Boat::hasDriver() const {
+    for(auto it = people_.begin(); it != people_.end(); it++) {
+        if (it->canDrive()) {
+            return true;
+        }
+    }
+    return false;
+}

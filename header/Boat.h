@@ -41,6 +41,12 @@ public:
      * @param b the new bank where the boat should be
      */
     void setCurrentBank(Bank* b);
+
+    /**
+     * Checks whether someone in the boat can drive.
+     * @return True is someone can drive, false otherwise
+     */
+    bool hasDriver() const;
 };
 
 

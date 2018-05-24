@@ -22,16 +22,14 @@ using namespace std;
 class Container {
 private:
     string name_;           // container's name
+protected:
     list<Person> people_;   // list of people in the container //TODO list de pointeurs
-public:
-    // TODO: debug only
-    //Container();
-
     /**
      * Constructor
      * @param name container's name
      */
-    Container(const string& name); // TODO: doit être utilisé seulement par les sous-classes
+    Container(const string& name);
+public:
 
     /**
      * Getter of the name
